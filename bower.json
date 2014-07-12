@@ -1,0 +1,19 @@
+{
+  "name": "haskathon",
+  "version": "0.0.0",
+  "authors": [
+    "Brian Malehorn <bmalehorn@gmail.com>"
+  ],
+  "description": "A really crappy maze game.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}
