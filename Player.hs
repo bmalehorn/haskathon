@@ -10,13 +10,13 @@ module Player (
 ) where
 
 import Prelude
-import Types
+import qualified Common as C
 
 imgSrc = "luigi.png"
 imgSrcs = [imgSrc]
 
-data Player = Player { loc :: Loc }
+data Player = Player { loc :: C.Loc }
 
-instance Drawable Player where
-  draw p = drawImage imgSrc (x $ loc p) (y $ loc p)
+instance C.Drawable Player where
+  draw p = C.drawImage imgSrc (C.x $ loc p) (C.y $ loc p)
 

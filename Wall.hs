@@ -1,15 +1,15 @@
 module Wall (
     Wall(..)
-  , imageSrcs
+  , imgSrcs
 ) where
 
 import Prelude
-import Types
+import qualified Common as C
 
-imageSrc = "brick.png"
-imageSrcs = [imageSrc]
+imgSrc = "brick.png"
+imgSrcs = [imgSrc]
 
+data Wall = Wall { loc :: C.Loc }
 
-
-
-data Player = Player { sprite :: String, loc :: Loc }
+instance C.Drawable Wall where
+  draw wall = C.drawImage imgSrc (C.x $ loc wall) (C.y $ loc wall)

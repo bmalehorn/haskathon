@@ -1,4 +1,4 @@
-module Types where
+module Common where
 
 import Prelude
 import FFI
