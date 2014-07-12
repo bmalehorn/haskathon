@@ -4,7 +4,10 @@
  -
  -}
 
-module Player(Player, imgSrcs) where
+module Player (
+    Player(..)
+  , imgSrc
+) where
 
 import Prelude
 import Types
@@ -12,4 +15,8 @@ import Types
 imgSrc = "luigi.png"
 imgSrcs = [imgSrc]
 
-data Player = Player { sprite :: String, loc :: Loc }
+data Player = Player { loc :: Loc }
+
+instance Drawable Player where
+  draw p = drawImage imgSrc (x $ loc p) (y $ loc p)
+

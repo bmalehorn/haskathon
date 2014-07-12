@@ -2,8 +2,8 @@
 module Main where
 
 import Prelude
-import qualified Player
-import qualified Types
+import Player
+import Types
 import FFI
 data Event
 
@@ -19,17 +19,16 @@ addWindowEvent = ffi "window.addEventListener(%1, %2)"
 setupJS :: [String] -> (Event -> Fay ()) -> Fay ()
 setupJS = ffi "Canvas.setup(%1, %2)"
 
-draw :: String -> Double -> Double -> Fay ()
-draw = ffi "Canvas.drawImage(%1, %2, %3)"
-
 
 google = "luigi.png"
+
+me = Player {loc = Loc {x = 0, y = 0}}
 
 main :: Fay ()
 main = do
   addWindowEvent "load" (\_ -> do
     setupJS [google] (\_ -> do
-      draw google 0 0
+      drawImage google 0 0
       putStrLn "done"
       )
     )
