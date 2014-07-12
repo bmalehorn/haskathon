@@ -1,6 +1,7 @@
 {-# LANGUAGE EmptyDataDecls #-}
 module Main where
 
+import Prelude
 import FFI
 
 data Event
@@ -14,15 +15,20 @@ setBodyHtml = ffi "document.body.innerHTML = %1"
 addWindowEvent :: String -> (Event -> Fay ()) -> Fay ()
 addWindowEvent = ffi "window.addEventListener(%1, %2)"
 
-setupJS :: Fay ()
-setupJS = ffi "Canvas.setup()"
+setupJS :: [String] -> (Event -> Fay ()) -> Fay ()
+setupJS = ffi "Canvas.setup(%1, %2)"
 
-greet :: Event -> Fay()
-greet event = do
-  setupJS
-  --putStrLn "The document has loaded"
-  --setBodyHtml "Hello HTML!"
+draw :: String -> Int -> Int -> Fay ()
+draw = ffi "Canvas.drawImage(%1, %2, %3)"
+
+google = "https://www.google.com/images/srpr/logo11w.png"
 
 main :: Fay ()
 main = do
-  addWindowEvent "load" greet
+  addWindowEvent "load" (\_ -> do
+    setupJS [google] (\_ -> do
+      ffi "console.log(46)" :: Fay ()
+      draw google 0 0
+      putStrLn "done"
+      )
+    )
