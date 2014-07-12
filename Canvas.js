@@ -1,22 +1,18 @@
 var Canvas = (function() {
   var ctx;
+  var imageMap = {};
   function setup(imageSrcs, callback) {
     var canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext("2d");
     loadImages(imageSrcs, callback);
   }
 
-  function makeImage(src) {
-    var image = new Image();
-    image.src = src;
-    return image;
-  }
-
-
-  var getCachedImage = _.memoize(makeImage);
-
   function drawImage(imageSrc, x, y) {
-    ctx.drawImage(getCachedImage(imageSrc), x, y);
+    if (!imageSrc in imageMap) {
+      // should definitely be in there
+      debugger;
+    }
+    ctx.drawImage(imageMap[imageSrc], x, y);
   }
 
   var images = {};
@@ -27,6 +23,7 @@ var Canvas = (function() {
       var image = new Image();
       image.onload = onload;
       image.src = imageSrc;
+      imageMap[imageSrc] = image;
     });
   }
 
