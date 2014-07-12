@@ -14,17 +14,15 @@ setBodyHtml = ffi "document.body.innerHTML = %1"
 addWindowEvent :: String -> (Event -> Fay ()) -> Fay ()
 addWindowEvent = ffi "window.addEventListener(%1, %2)"
 
+setupJS :: Fay ()
+setupJS = ffi "Canvas.setup()"
+
 greet :: Event -> Fay()
 greet event = do
-  putStrLn "The document has loaded"
-  setBodyHtml "Hello HTML!"
-
---setup :: Fay ()
---setup = do
---  ffi
+  setupJS
+  --putStrLn "The document has loaded"
+  --setBodyHtml "Hello HTML!"
 
 main :: Fay ()
 main = do
-  putStrLn "Hello Console!"
-  --alert "Hello Alert!"
-  --addWindowEvent "load" greet
+  addWindowEvent "load" greet
