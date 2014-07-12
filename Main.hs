@@ -2,8 +2,9 @@
 module Main where
 
 import Prelude
+import qualified Player
+import qualified Types
 import FFI
-
 data Event
 
 alert :: String -> Fay ()
