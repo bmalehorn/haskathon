@@ -1,6 +1,7 @@
 {-# LANGUAGE EmptyDataDecls #-}
 module Main where
 
+import Prelude
 import FFI
 
 data Event
